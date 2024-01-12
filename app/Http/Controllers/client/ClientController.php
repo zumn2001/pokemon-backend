@@ -48,6 +48,12 @@ class ClientController extends BaseController
         $query =  $query->where('type_id',$request->type);
         return $query;
     }
+
+    public function orders($user_id)
+    {
+        $order = new PaymentResource(Payment::where('user_id', $user_id)->first());
+        return $this->success('Orders!', $order);
+    }
     
     public function allOrders()
     {
